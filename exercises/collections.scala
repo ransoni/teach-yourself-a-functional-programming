@@ -46,7 +46,7 @@ object Functions {
   // Return only cards of suit "heart"
   //
   // onlyHearts(List(("diamond", 4), ("heart", 9), ("clubs", 10))) ==  List(("heart", 9))
-  def onlyHearts(xs: List[(String, Int)]): List[(String, Int)] = ???
+  def onlyHearts(xs: List[(String, Int)]): List[(String, Int)] = xs.filter(x => x._1 == "heart")
 
   def main(args: Array[String]) {
 
