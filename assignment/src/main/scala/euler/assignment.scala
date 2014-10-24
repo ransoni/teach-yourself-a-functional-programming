@@ -23,7 +23,67 @@ object ProjectEuler {
    * Find the largest palindrome made from the product of two 3-digit numbers.
    *
    */
-  def problem4(): Int = ???
+  def problem4():Int = {
+    val a = 999
+    val b = 1000
+    var pal = 0
+
+//    pyth(a, b)
+    // }
+    //pyth(2,5)
+    def pytha(aaa: Int, bbb: Int): Int = {
+      if ((aaa * bbb) == (aaa * bbb).toString.reverse.toInt) {
+        //println("Tännekö (pytha) jää? a:" + aaa + " b: " + bbb)
+        if ((aaa * bbb) > pal) { pal = aaa * bbb }
+          else pal = pal
+        if (bbb > 0) {
+          pytha(aaa, bbb - 1)
+        } else {
+          pyth(aaa - 1, b)
+        }
+      }
+      else {
+        if (bbb == 0) {
+          pyth(aaa - 1, b)
+        } else {
+          pytha(aaa, bbb - 1)
+        }
+
+      }
+
+    } //pytha päättyy
+
+    def pyth(aa: Int, bb: Int): Int = {
+      if ((aa * bb) == (aa * bb).toString.reverse.toInt) {
+
+        println("Tännekö (pyth) jää? a:" + aa + " b: " + bb)
+
+        if ((aa * bb) > pal) { pal = aa * bb }
+        else pal = pal
+
+        if (aa > 0) {
+          pytha(aa,bb-1)
+        } else {
+          pal
+        }
+      }
+      else {
+        if (aa > 0) {
+          pytha(aa, bb - 1)
+        }
+        else {
+          555
+        }
+        //          pyth(a - 1, b - 1)
+      }
+
+
+    } //pyth päättyy
+
+    pyth(a, b)
+  } //problem4 päättyy
+
+  //}
 
   /*
    * Special Pythagorean triplet
