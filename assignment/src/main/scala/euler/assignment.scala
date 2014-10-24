@@ -115,7 +115,29 @@ object ProjectEuler {
    * There exists exactly one Pythagorean triplet for which a + b + c = 1000.
    * Find the product abc.
    */
-  def problem9(): Int = ???
+  def problem9(): Int = {
+    def pythagora(a:Int,b:Int,c:Int):Int = {
+      if ((a + b + c) != 1000) {
+        if (a == b) {
+          if (b == c) {
+            println("3rd level if")
+            pythagora(a,b,c+1)
+          } else {
+            println("sisin else")
+            pythagora(a,b+1,c)
+          }
+        } else {
+          println("2nd else")
+          pythagora(a+1,b,c)
+        }
+      } else {
+        println("1st level")
+        a * b * c
+      }
+    }
+
+    pythagora(0,0,0)
+  }
 
 
   /*
