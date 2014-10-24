@@ -12,7 +12,26 @@ object ProjectEuler {
    * By considering the terms in the Fibonacci sequence whose values do not
    * exceed four million, find the sum of the even-valued terms.
    */
-  def problem2(): Int = ???
+  def problem2(): Int = {
+    var fiblist = List(2,1,0)
+    var add = 0
+
+    def fib(fibbis:List[Int]):Int = {
+      if ((fiblist.head) > 4000000) {
+        //        println("Tulos: " + fibbis.drop(1))
+        //println("Summa: " + fibbis.drop(1).filter(x => x % 2 == 0).sum)
+        fibbis.drop(1).filter(x => x % 2 == 0).sum
+      } else {
+        add = fiblist.take(2).head + fiblist.take(2).last
+        //println("add: " + add)
+        fiblist = add :: fiblist
+        //println(fibbis)
+        fib(add :: fibbis)
+      }
+    }
+
+    fib(fiblist)
+  }
 
   /*
    * Largest palindrome product
@@ -115,7 +134,42 @@ object ProjectEuler {
    * Find the maximum total from top to bottom of the given triangle with 15
    * rows:
    */
-  def problem18(triangle: List[List[Int]]): Int = ???
+  def problem18(triangle: List[List[Int]]): Int = {
+
+    val row = 0
+    val index = 0
+    var sum = 0
+    val pyra = triangle
+
+    def indexOfMax(tst:List[Int]):Int = {
+      //println("indexOfMax")
+      var max = tst.max
+      tst.indexOf(max)
+    }
+    def maxPath(listrow:List[List[Int]],ind:Int):Int = { //Kutsutaan tietyn rivin listalla + indexi josta seuraavat kaksi alkiota
+      //println("maxPath")
+      if (listrow(0).isEmpty) {
+        sum
+      } else {
+        //println("Luku: " + listrow(0)(ind + indexOfMax(listrow(0).drop(ind).take(2))))
+        //println("Indeksi: " + (ind + indexOfMax(listrow(0).drop(ind).take(2))))
+        sum = sum + listrow(0)(ind + indexOfMax(listrow(0).drop(ind).take(2)))
+        //println("Summa nyt: " + sum)
+        if (listrow.drop(1).isEmpty) {
+          sum
+        } else {
+          maxPath(listrow.drop(1), ind + indexOfMax(listrow(0).drop(ind).take(2)))
+        }
+      }
+
+    }
+
+    // pyra(9).drop(indexOfMax(pyra(8)) - 1).take(2)  <-- seuraavan rivin alkiot
+
+    maxPath(triangle,index)
+
+
+  }
 
   /*
    * Maximum path sum II
